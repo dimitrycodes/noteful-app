@@ -58,11 +58,7 @@ router.route('/:id').delete((req, res, next) => {
       logger.info(`Folder with id ${bookmark_id} deleted.`);
       res.status(204).end();
     })
-    .catch((err) => {
-      const err = new Error('The `id` is not valid');
-      err.status = 400;
-      next(err);
-    });
+    .catch(next(err));
 });
 
 module.exports = router;
