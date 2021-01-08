@@ -1,6 +1,6 @@
 # Noteful: A note taking app
 
-This app is meant to give students experience with building REST APIs with Node, Express, JWT-based auth, Mongo, and Mongoose.
+This app is meant to give experience with building REST APIs with Node, Express, JWT-based auth, Mongo, and Mongoose.
 
 It is also provided as a backend that curriculum contributors, instructors, and students can run locally to build clients that provide a GUI for this API.
 
