@@ -58,7 +58,7 @@ router.route('/:id').delete((req, res, next) => {
       logger.info(`Folder with id ${bookmark_id} deleted.`);
       res.status(204).end();
     })
-    .catch(next(err));
+    .catch(next);
 });
 
 module.exports = router;
