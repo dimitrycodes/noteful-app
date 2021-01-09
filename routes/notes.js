@@ -54,10 +54,10 @@ router
       .catch(next);
   })
   .get((req, res, next) => {
-    console.log('req.params', req.params);
     const { id } = req.params;
-    NoteServices.getById(req.app.get('db'), parseInt(id))
-      .then((note) => {
+    NoteServices.getById(req.app.get('db'), id)
+    .then((note) => {
+        console.log('req.params', note);
         if (!note) {
           return res.status(404).json({
             error: { message: `Note Not Found` },
