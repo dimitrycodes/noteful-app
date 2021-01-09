@@ -60,6 +60,7 @@ router
         if (note) {
           res.note = note;
         }
+        next();
       })
       .catch(next);
   });
