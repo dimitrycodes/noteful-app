@@ -57,7 +57,9 @@ router
     const { id } = req.params;
     NoteServices.getById(req.app.get('db'), id)
       .then((note) => {
-        res.status(204).json(serializeNote(note));
+        if (note) {
+          res.note = note;
+        }
       })
       .catch(next);
   });
