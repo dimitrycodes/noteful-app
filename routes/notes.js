@@ -58,9 +58,12 @@ router
     NoteServices.getById(req.app.get('db'), id)
       .then((note) => {
         if (note) {
-          res.note = note;
+          console.log('note',note);
+          res.json(note);
+        } else {
+          console.log('note err',note);
+          next();
         }
-        next();
       })
       .catch(next);
   });
