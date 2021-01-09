@@ -58,7 +58,7 @@ router
     NoteServices.getById(req.app.get('db'), id)
       .then((note) => {
         if (note) {
-          res.json(note);
+          res.json(serializeNote(note));
         } else {
           next();
         }
