@@ -1,4 +1,4 @@
-const MoteServices = {
+const NoteServices = {
   getAllNotes(knex) {
     return knex.select('*').from('notes');
   },
@@ -26,4 +26,4 @@ const MoteServices = {
   },
 };
 
-module.exports = MoteServices;
+module.exports = NoteServices;
