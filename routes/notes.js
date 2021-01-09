@@ -40,20 +40,13 @@ router
           .location(`${req.originalUrl}/${note.id}`)
           .json(serializeNote(note));
       })
-      .catch((err) => {
-        if (err === 'InvalidFolder') {
-          err = new Error('The folder is not valid');
-          err.status = 400;
-        }
-        next(err);
-      });
+      .catch(next);
   });
 
 router.route('/:id').delete((req, res, next) => {
   const { id } = req.params;
   NoteServices.deleteNote(req.app.get('db'), id)
     .then((numRowsAffected) => {
-      logger.info(`Folder with id ${bookmark_id} deleted.`);
       res.status(204).end();
     })
     .catch(next);
