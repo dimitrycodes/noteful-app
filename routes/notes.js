@@ -57,12 +57,6 @@ router
     const { id } = req.params;
     NoteServices.getById(req.app.get('db'), id)
     .then((note) => {
-        console.log('req.params', note);
-        if (!note) {
-          return res.status(404).json({
-            error: { message: `Note Not Found` },
-          });
-        }
         res.note = note;
         next();
       })
