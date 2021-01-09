@@ -8,11 +8,11 @@ const NoteServices = require('../services/notes');
 const router = express.Router();
 const bodyParser = express.json();
 
-const serializeFolder = (note) => ({
+const serializeNote = (note) => ({
   id: note.id,
   title: xss(note.title),
   content: xss(note.content),
-  folderId: note.folderId,
+  folderId: note.folderid,
 });
 
 router
@@ -20,7 +20,7 @@ router
   .get((req, res, next) => {
     NoteServices.getAllNotes(req.app.get('db'))
       .then((notes) => {
-        res.json(notes.map(serializeFolder));
+        res.json(notes.map(serializeNote));
       })
       .catch(next);
   })
@@ -40,7 +40,7 @@ router
         res
           .status(201)
           .location(`${req.originalUrl}/${note.id}`)
-          .json(serializeFolder(note));
+          .json(serializeNote(note));
       })
       .catch((err) => {
         if (err === 'InvalidFolder') {
