@@ -58,11 +58,7 @@ router
     NoteServices.getById(req.app.get('db'), id)
       .then((note) => {
         if (note) {
-          const modify = {
-            ...note,
-            name: note.title,
-          };
-          res.json(modify);
+          res.json(note);
         } else {
           next();
         }
