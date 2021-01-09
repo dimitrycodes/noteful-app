@@ -30,9 +30,7 @@ router
     const newNote = { title, content, folderId: parseInt(folderId) };
 
     if (!title) {
-      const err = new Error('Missing `title` in request body');
-      err.status = 400;
-      return next(err);
+      return res.status(400).send('Missing `title` in request body')
     }
 
     NoteServices.insertNote(req.app.get('db'), newNote)
