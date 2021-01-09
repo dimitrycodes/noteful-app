@@ -56,7 +56,7 @@ router
   .get((req, res, next) => {
     console.log('req.params', req.params);
     const { id } = req.params;
-    NoteServices.getById(req.app.get('db'), id)
+    NoteServices.getById(req.app.get('db'), parseInt(id))
       .then((note) => {
         if (!note) {
           return res.status(404).json({
