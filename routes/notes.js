@@ -10,7 +10,7 @@ const bodyParser = express.json();
 
 const serializeNote = (note) => ({
   id: note.id,
-  name: xss(note.title),
+  title: xss(note.title),
   content: xss(note.content),
   folderId: note.folderid,
 });
