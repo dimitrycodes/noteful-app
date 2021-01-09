@@ -10,7 +10,7 @@ const bodyParser = express.json();
 
 const serializeNote = (note) => ({
   id: note.id,
-  title: xss(note.title),
+  name: xss(note.title),
   content: xss(note.content),
   folderId: note.folderid,
 });
@@ -58,7 +58,7 @@ router
     NoteServices.getById(req.app.get('db'), id)
       .then((note) => {
         if (note) {
-          res.json(note);
+          res.json(serializeNote(note));
         } else {
           next();
         }
