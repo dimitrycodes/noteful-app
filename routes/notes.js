@@ -12,6 +12,7 @@ const serializeNote = (note) => ({
   id: note.id,
   name: xss(note.title),
   content: xss(note.content),
+  modified: note.modified,
   folderId: note.folderid,
 });
 
@@ -25,9 +26,9 @@ router
       .catch(next);
   })
   .post(bodyParser, (req, res, next) => {
-    const { title, content, folderId } = req.body;
+    const { title, content, folderId, modified } = req.body;
 
-    const newNote = { title, content, folderid: folderId };
+    const newNote = { title, content, modified, folderid: folderId };
 
     if (!title) {
       return res.status(400).send('Missing `title` in request body');
