@@ -58,7 +58,11 @@ router
     NoteServices.getById(req.app.get('db'), id)
       .then((note) => {
         if (note) {
-          res.json(serializeNote(note));
+          const modify = {
+            ...note,
+            name: note.title,
+          };
+          res.json(modify);
         } else {
           next();
         }
