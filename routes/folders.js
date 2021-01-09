@@ -58,8 +58,11 @@ router.route('/:id').delete((req, res, next) => {
   const { id } = req.params;
   FolderServices.getById(req.app.get('db'), id)
     .then((folder) => {
-      res.folder = folder;
-      next()
+      if (folder) {
+        res.json(folder);
+      } else {
+        next();
+      }
     })
     .catch(next);
 });

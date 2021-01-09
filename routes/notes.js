@@ -58,10 +58,8 @@ router
     NoteServices.getById(req.app.get('db'), id)
       .then((note) => {
         if (note) {
-          console.log('note',note);
           res.json(note);
         } else {
-          console.log('note err',note);
           next();
         }
       })
