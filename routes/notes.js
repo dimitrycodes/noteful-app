@@ -27,7 +27,7 @@ router
   .post(bodyParser, (req, res, next) => {
     const { title, content, folderId } = req.body;
 
-    const newNote = { title, content, folderId };
+    const newNote = { title, content, folderid: folderId };
 
     if (!title) {
       return res.status(400).send('Missing `title` in request body');
