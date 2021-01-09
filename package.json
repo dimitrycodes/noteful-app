@@ -10,8 +10,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-		"migrate": "postgrator --config postgrator-config.js",
-		"predeploy": "npm audit",
+    "migrate": "postgrator --config postgrator-config.js",
+    "predeploy": "npm audit",
     "deploy": "git push heroku master",
     "cover": "nyc --reporter=lcov --reporter=text-summary npm test"
   },
