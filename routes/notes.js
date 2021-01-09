@@ -43,13 +43,29 @@ router
       .catch(next);
   });
 
-router.route('/:id').delete((req, res, next) => {
-  const { id } = req.params;
-  NoteServices.deleteNote(req.app.get('db'), id)
-    .then((numRowsAffected) => {
-      res.status(204).end();
-    })
-    .catch(next);
-});
+router
+  .route('/:id')
+  .delete((req, res, next) => {
+    const { id } = req.params;
+    NoteServices.deleteNote(req.app.get('db'), id)
+      .then((numRowsAffected) => {
+        res.status(204).end();
+      })
+      .catch(next);
+  })
+  .get((req, res, next) => {
+    const { id } = req.params;
+    NoteServices.getById(req.app.get('db'), id)
+      .then((note) => {
+        if (!note) {
+          return res.status(404).json({
+            error: { message: `Note Not Found` }
+          })
+        }
+        res.note = note;
+        next()
+      })
+      .catch(next);
+  });
 
 module.exports = router;

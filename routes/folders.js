@@ -51,8 +51,20 @@ router.route('/:id').delete((req, res, next) => {
   const { id } = req.params;
   FolderServices.deleteFolder(req.app.get('db'), id)
     .then((numRowsAffected) => {
-      logger.info(`Folder with id ${bookmark_id} deleted.`);
       res.status(204).end();
+    })
+    .catch(next);
+}).get((req, res, next) => {
+  const { id } = req.params;
+  FolderServices.getById(req.app.get('db'), id)
+    .then((folder) => {
+      if (!folder) {
+        return res.status(404).json({
+          error: { message: `folder Not Found` }
+        })
+      }
+      res.folder = folder;
+      next()
     })
     .catch(next);
 });
